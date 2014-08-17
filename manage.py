@@ -3,30 +3,25 @@ sys.dont_write_bytecode = True
 
 import json
 from flask import Flask, request
-from flask.ext.script import Manager, Server
+from flask.ext.script import Manager, Server, Option
 from app.app import color_convert, color_distance
+from settings import development
 from time import time as tm
 
 colormath_app = Flask(__name__)
+for k, v in development.app_settings.iteritems():
+    colormath_app.config[k] = v
+
 manager = Manager(colormath_app)
 
-
-
+    
 """
 Main method to run the app either in a debug or prod mode.
 """
 def main_(debug=False):
     manager.add_command("runserver", Server())
     manager.run()
-    
-    """
-    if debug:
-        colormath_app.debug=True
-        colormath_app.run()
-    else:
-        colormath_app.debug=False
-        colormath_app.run()
-    """
+
 
 @colormath_app.route('/')
 @manager.command
@@ -69,13 +64,8 @@ def distance(**params):
         end_ = tm()
         output, status = color_distance_.distance()
         return json.dumps({'time_spent': float(end_-start_), 'output': output, 'status': status})
-"""
-if __name__ == "__main__" and len(sys.argv) == 4:
-    mode = sys.argv[3]
-    if mode == 'settings.prod':
-        main_()
-    elif mode == 'settings.development':
-        main_(True)
-"""
+
+
 if __name__ == '__main__':
+    print sys.argv
     main_()

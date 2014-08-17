@@ -32,7 +32,7 @@ def validate_distance_items(input_item, desired_length, desired_types, desired_u
     indicator = {'result_item': input_item, 'valid': True, 'response': ''}
     distance_types = {
         'cie1976': True,
-        'cie2000': True,
+        'cie1994': True,
         'cie2000': True,
         'cmc': True
     }
