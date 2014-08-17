@@ -10,7 +10,7 @@ from colormath.color_diff import *
 from colormath.color_conversions import convert_color as cco
 
 
-lib_path = os.path.abspath('../')
+lib_path = os.path.abspath('../plumperfect-colormath/')
 sys.path.append(lib_path)
 from manage import convert, distance
 

@@ -2,6 +2,7 @@ import sys
 sys.dont_write_bytecode = True
 
 import json
+import subprocess
 from flask import Flask, request
 from flask.ext.script import Manager, Server, Option
 from app.app import color_convert, color_distance
@@ -48,7 +49,6 @@ def convert(**params):
         output, status = color_conversion_.convert()
         return json.dumps({'time_spent': float(end_-start_), 'output': output, 'status': status})
     
-
 @colormath_app.route('/distance/')
 @manager.option('--type')
 @manager.option('--c1')
@@ -65,7 +65,11 @@ def distance(**params):
         output, status = color_distance_.distance()
         return json.dumps({'time_spent': float(end_-start_), 'output': output, 'status': status})
 
-
 if __name__ == '__main__':
-    print sys.argv
-    main_()
+    if 'test' in sys.argv:
+        print 'testing the current methods..'
+        command_ = 'py.test --cov tests/'
+        process = subprocess.Popen(command_, shell=True)
+        process.wait()
+    else:
+        main_()

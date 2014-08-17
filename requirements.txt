@@ -1,0 +1,7 @@
+numpy
+flask
+Flask-Script
+networkx
+colormath
+pytest
+pytest-cov
