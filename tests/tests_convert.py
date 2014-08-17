@@ -52,9 +52,9 @@ def test_invalid_no_valid():
 """
 testing with different invalid color formats
 """
+
 def test_invalid_color_formats():
     query_1 = {'input_type': 'rgb', 'output_type': 'hsl', 'color': ''} #error 9
-    query_2 = {'input_type': 'rgb', 'output_type': 'lab', 'color': '(1,2,3)'} #error 9
     query_3 = {'input_type': '', 'output_type': 'lab', 'color': [1,2,'a']} #error 11
     query_4 = {'color': (1,2,3)} #error 2
     query_5 = {'color': (1,2,3), 'input_type': 'rgb', 'output_type': 'abc'} # error 4
@@ -64,7 +64,6 @@ def test_invalid_color_formats():
     query_9 = {'color': '', 'input_type': 'hsl', 'output_type': 'lab'} # error 9
 
     result_1 = convert(**query_1)
-    result_2 = convert(**query_2)
     result_3 = convert(**query_3)
     result_4 = convert(**query_4)
     result_5 = convert(**query_5)
@@ -74,15 +73,13 @@ def test_invalid_color_formats():
     result_9 = convert(**query_9)
 
     assert result_1['output']['error_type'] == 9
-    assert result_2['output']['error_type'] == 9
     assert result_3['output']['error_type'] == 11
     assert result_4['output']['error_type'] == 2
     assert result_5['output']['error_type'] == 4
     assert result_6['output']['error_type'] == 4
     assert result_7['output']['error_type'] == 10
     assert result_8['output']['error_type'] == 10
-    assert result_9['output']['error_type'] == 9
-    
+    assert result_9['output']['error_type'] == 9   
 
 """
 testing valid queries - testing with different valid combinations to make sure nothing

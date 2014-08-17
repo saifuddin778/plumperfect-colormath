@@ -3,25 +3,34 @@ sys.dont_write_bytecode = True
 
 import json
 from flask import Flask, request
+from flask.ext.script import Manager, Server
 from app.app import color_convert, color_distance
 from time import time as tm
 
 colormath_app = Flask(__name__)
-#colormath_app.config['SECRET_KEY'] = '1234567890'
+manager = Manager(colormath_app)
+
+
 
 """
 Main method to run the app either in a debug or prod mode.
 """
 def main_(debug=False):
+    manager.add_command("runserver", Server())
+    manager.run()
+    
+    """
     if debug:
         colormath_app.debug=True
         colormath_app.run()
     else:
         colormath_app.debug=False
         colormath_app.run()
+    """
 
 @colormath_app.route('/')
-def main():
+@manager.command
+def index():
     name = "colormath RGB conversion api"
     version = '1.0'
     object_ = {'name': name, 'version': version}
@@ -29,6 +38,9 @@ def main():
 
 
 @colormath_app.route('/convert/')
+@manager.option('--input_type')
+@manager.option('--output_type')
+@manager.option('--color')
 def convert(**params):
     if params:
         color_conversion_ = color_convert(params, True)
@@ -43,6 +55,9 @@ def convert(**params):
     
 
 @colormath_app.route('/distance/')
+@manager.option('--type')
+@manager.option('--c1')
+@manager.option('--c2')
 def distance(**params):
     if params:
         color_distance_ = color_distance(params, True)
@@ -54,10 +69,13 @@ def distance(**params):
         end_ = tm()
         output, status = color_distance_.distance()
         return json.dumps({'time_spent': float(end_-start_), 'output': output, 'status': status})
-
+"""
 if __name__ == "__main__" and len(sys.argv) == 4:
     mode = sys.argv[3]
     if mode == 'settings.prod':
         main_()
     elif mode == 'settings.development':
         main_(True)
+"""
+if __name__ == '__main__':
+    main_()

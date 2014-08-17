@@ -30,7 +30,7 @@ class color_convert(object):
         
         for k,v in self.arguments.iteritems():
             if k in self.allowed_params:
-                parameters[k] = v
+                parameters[k] = str(v).strip()
         
         if len(parameters) == 0:
             return invalid_queries('no_input_type'), self.status
@@ -54,6 +54,7 @@ class color_convert(object):
                     desired_unit_types = [StringType]
                 
                 validation = validate_conversion_items(v, desired_length, desired_type, desired_unit_types, self.module_query)
+
                 if not validation['valid']:
                     response = validation['response']
                     break
@@ -88,7 +89,7 @@ class color_distance(object):
         
         for k,v in self.arguments.iteritems():
             if k in self.allowed_params:
-                parameters[k] = v
+                parameters[k] = str(v).strip()
         
         if len(parameters) == 0:
             return invalid_distance_queries('no_distance_type'), self.status

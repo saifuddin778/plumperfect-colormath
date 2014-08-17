@@ -41,25 +41,31 @@ def validate_conversion_items(input_item, desired_length, desired_types, desired
                 indicator['response'] = invalid_queries('invalid_color_type')
     else:
         try:
+            """
             if not is_module:
                 input_item = ast.literal_eval(input_item)
-            
-            indicator['result_item'] = input_item
-            
-            if type(input_item) not in desired_types:
+            """
+            if not len(input_item):
                 indicator['valid'] = False
                 indicator['response'] = invalid_queries('wrong_color_type')
-            else:
-                unit_types = list(set(map(type, input_item)))
-                if len(input_item) != desired_length:
+            else:    
+                input_item = ast.literal_eval(input_item)
+                indicator['result_item'] = input_item
+            
+                if type(input_item) not in desired_types:
                     indicator['valid'] = False
-                    indicator['response'] = invalid_queries('invalid_color_length')
+                    indicator['response'] = invalid_queries('wrong_color_type')
                 else:
-                    for a in unit_types:
-                        if a not in desired_unit_types:
-                            indicator['valid'] = False
-                            indicator['response'] = invalid_queries('invalid_color_features')
-                            break
+                    unit_types = list(set(map(type, input_item)))
+                    if len(input_item) != desired_length:
+                        indicator['valid'] = False
+                        indicator['response'] = invalid_queries('invalid_color_length')
+                    else:
+                        for a in unit_types:
+                            if a not in desired_unit_types:
+                                indicator['valid'] = False
+                                indicator['response'] = invalid_queries('invalid_color_features')
+                                break
         except:
                 indicator['valid'] = False
                 indicator['response'] = invalid_queries('wrong_color_type')
