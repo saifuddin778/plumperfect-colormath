@@ -41,10 +41,6 @@ def validate_conversion_items(input_item, desired_length, desired_types, desired
                 indicator['response'] = invalid_queries('invalid_color_type')
     else:
         try:
-            """
-            if not is_module:
-                input_item = ast.literal_eval(input_item)
-            """
             if not len(input_item):
                 indicator['valid'] = False
                 indicator['response'] = invalid_queries('wrong_color_type')
