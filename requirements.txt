@@ -1,6 +1,7 @@
 numpy
 flask
 Flask-Script
+Flask-Testing
 networkx
 colormath
 pytest

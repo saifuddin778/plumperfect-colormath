@@ -67,7 +67,7 @@ def distance(**params):
         return json.dumps({'time_spent': float(end_-start_), 'output': output, 'status': status})
 
 if __name__ == '__main__':
-    if 'test' in sys.argv:
+    if 'tests' in sys.argv:
         print 'testing the current methods..'
         command_ = 'py.test --cov tests/'
         process = subprocess.Popen(command_, shell=True)

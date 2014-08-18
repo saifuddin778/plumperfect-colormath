@@ -8,7 +8,7 @@ dev settings for plumperfect-colormath
 app_settings = dict(
     DEBUG = True,
     
-    TESTING = True,
+    TESTING = False,
 
     PROPAGATE_EXCEPTIONS = True,
     
