@@ -10,6 +10,7 @@ from settings import development
 from time import time as tm
 
 colormath_app = Flask(__name__)
+
 for k, v in development.app_settings.iteritems():
     colormath_app.config[k] = v
 

@@ -78,12 +78,12 @@ class color_distance(object):
         self.allowed_params = ['c1', 'c2', 'type']
         
     def distance(self):
-        response = invalid_queries('empty_query')
+        response = invalid_distance_queries('empty_query')
         if not self.arguments or len(self.arguments) == 0:
             return invalid_distance_queries('empty_query'), self.status
         
         if self.arguments.has_key('docs'):
-            return docs['convert'], True
+            return docs['distance'], True
         
         parameters = {}
         

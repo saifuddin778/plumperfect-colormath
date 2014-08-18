@@ -26,7 +26,7 @@ app_settings = dict(
     
     SESSION_COOKIE_SECURE = False,
     
-    TRAP_HTTP_EXCEPTIONS = True,
+    TRAP_HTTP_EXCEPTIONS = False,
     
     TRAP_BAD_REQUEST_ERRORS = False,
     

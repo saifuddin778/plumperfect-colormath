@@ -123,12 +123,11 @@ dist_notif['invalid_color_features'] = {
 Docs
 """
 docs = {
-        
         'convert': {
                 'function': 'Returns the input color type converted to the desired type',
                 'parameters': {'input_type': "input type of the color provided for conversion. This can either be 'lab', 'rgb' or 'hsl'",
                                'output_type': "output type of color you want as a result. This can either be 'lab', 'rgb' or 'hsl'",
-                               'color': "the color to be converted - can be provided as a tuple of floats or ints",
+                               'color': "the color to be converted - can be provided as a tuple of floats or ints, like (float,float,float)",
                         },
                 'example_queries': ['http://localhost:5000/convert/?input_type=rgb&output_type=hsl&color=(20,10,10)', 'http://localhost:5000/convert/?input_type=lab&output_type=rgb&color=(-2,-1,1)']
         },
@@ -139,7 +138,6 @@ docs = {
                                'c2': "second color (float,float,float)",
                         },
                 'example_queries': ['http://localhost:5000/distance/?type=cmc&c1=(1,2,3)&c2=(-1,2,3)', 'http://localhost:5000/distance/?type=cie2000&c1=(1,20,3)&c2=(-1,21,3)']
- 
         }      
 }
 
