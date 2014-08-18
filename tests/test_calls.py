@@ -19,12 +19,6 @@ testing the conversion methods
 """
 
 """
-testing docs
-"""
-#def test_docs():
-#    pass
-
-"""
 testing invalid queries - case # no valid parameters at all
 """
 def test_conv_invalid_no_valid():
